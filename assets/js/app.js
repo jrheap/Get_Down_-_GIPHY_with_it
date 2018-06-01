@@ -43,6 +43,7 @@ $.ajax ({
         gifContainer.append(gifImage);
 
         $("#gifs").append(gifContainer);
+        $("#gifBtn").append(gifContainer);
         console.log(gifImage);
     }
 
