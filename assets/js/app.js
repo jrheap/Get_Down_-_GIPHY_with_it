@@ -10,6 +10,8 @@ $("#addAnimal").on("click", function(event){
     var animal = $("#animal-input").val();
     var newButton = $("<button></button>");
     newButton.attr("id", "gifBtn");
+    newButton.attr("data-name", animal);
+
     newButton.text(animal);
 
     $("#animalButtons").append(newButton);
@@ -17,8 +19,8 @@ $("#addAnimal").on("click", function(event){
 })
 // add ajax into a funtion
 
-// $("#gifBtn").on("click", function(event){
-//     event.preventDefault(); 
+$("#animalButtons").on("click", "#gifBtn" , function(event){
+    event.preventDefault(); 
 
 // grab the data of the 
 var animal = $(this).attr("data-name");
@@ -38,17 +40,37 @@ $.ajax ({
         gifContainer.attr("class", "container");
 
         var gifImage = $("<img>");
+        gifImage.attr("data-still", result[i].images.fixed_height_still.url);
+        gifImage.attr("data-animated", result[i].images.fixed_height.url);
         gifImage.attr("src", result[i].images.fixed_height.url);
-        
+        gifImage.attr("data-state", "animated");
+        gifContainer.append(gifImage);
+
+        gifImage.attr("id", "gifImg");
+            
         gifContainer.append(gifImage);
 
         $("#gifs").append(gifContainer);
-        $("#gifBtn").append(gifContainer);
         console.log(gifImage);
     }
 
 })
-// })
+})
+$('#gifs').on("click", '#gifImg', function(event){
+    event.preventDefault();
+    console.log($(this));
+    var state = $(this).attr("data-state");
+    var stillImg = $(this).attr('data-still')
+    var animatedImg = $(this).attr('data-animated')
+        if (state === "animated") {
+            $(this).attr("src", stillImg);
+            $(this).attr("data-state", "still");
+        }else{
+            $(this).attr("src", animatedImg);
+            $(this).attr("data-state", "animated");
+        }
+        //else animate it again
+})
 
 
 // input an animal
