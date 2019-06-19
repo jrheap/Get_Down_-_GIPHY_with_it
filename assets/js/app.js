@@ -35,25 +35,27 @@ $.ajax ({
     console.log(result);
 
     for (var i = 0; i < result.length; i++) {
-
-        var gifContainer = $("<div>");
-        gifContainer.attr("class", "container");
-
+        var bootstrapTest = $(``)
+        var gifContainer = $(`<div>`
+        );
+        gifContainer.attr("class", "card");
+        
         var gifImage = $("<img>");
+        gifImage.attr("class", "card-body")
         gifImage.attr("data-still", result[i].images.fixed_height_still.url);
         gifImage.attr("data-animated", result[i].images.fixed_height.url);
         gifImage.attr("src", result[i].images.fixed_height.url);
         gifImage.attr("data-state", "animated");
         gifContainer.append(gifImage);
-
+        
         gifImage.attr("id", "gifImg");
-            
+        
         gifContainer.append(gifImage);
-
-        $("#gifs").append(gifContainer);
+        
+        $("#gifs").prepend(gifContainer);
         console.log(gifImage);
     }
-
+    
 })
 })
 $('#gifs').on("click", '#gifImg', function(event){

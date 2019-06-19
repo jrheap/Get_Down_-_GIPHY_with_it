@@ -1,0 +1,25 @@
+body{
+    background-image: url(../img/scenic-6.jpg)
+}
+
+.card{
+    display: inline-flex;
+    justify-content: centerl
+}
+#gifs{
+    margin-left: 100px;
+}
+#gifImg{
+    padding: 20px;
+}
+#gifBtn{
+    margin: 20ps
+}
+
+#animalButtons{
+    margin-left: 100px
+}
+
+h1{
+    color: white;
+}
